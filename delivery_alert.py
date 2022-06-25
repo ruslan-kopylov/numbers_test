@@ -45,7 +45,7 @@ def dates_checker():
         database=getenv('DB_NAME')
     )
     cursor = connection.cursor()
-    query = 'SELECT * FROM orders'
+    query = 'SELECT * FROM table_orders'
     cursor.execute(query)
     alerts, today = [], []
     for row in cursor.fetchall():
