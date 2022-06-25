@@ -23,20 +23,7 @@ python3 -m pip install --upgrade pip
 
 pip install -r requirements.txt
 ```
-Выполнить миграции:
-
-```
-python3 manage.py migrate
-```
-
-Запустить проект:
-
-```
-python3 manage.py runserver
-```
-В файле ```orders/table/main_script.py``` в строке 33 указать абсолютный путь до файла с credentials для доступа к google api.
-
-В папке главной папке проекта (где settings.py) создать файл .env и добавить в него:
+В основной папке проекта (где settings.py) создать файл .env и добавить в него:
 ```
 1. DB_ENGINE='django.db.backends.postgresql'
 2. DB_NAME = '<название БД>'
@@ -44,6 +31,17 @@ python3 manage.py runserver
 4. POSTGRES_PASSWORD = '<пароль от БД>'
 5. DB_HOST = '127.0.0.1'
 6. DB_PORT = '5432'
+```
+Выполнить миграции:
+```
+python3 manage.py migrate
+```
+В файле ```orders/table/main_script.py``` в строке 33 указать абсолютный путь до файла с credentials для доступа к google api.
+
+Запустить проект:
+
+```
+python3 manage.py runserver
 ```
 ***
 ## Бесконечный скрипт.
