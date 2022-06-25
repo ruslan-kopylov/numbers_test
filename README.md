@@ -31,6 +31,8 @@ pip install -r requirements.txt
 4. POSTGRES_PASSWORD = '<пароль от БД>'
 5. DB_HOST = '127.0.0.1'
 6. DB_PORT = '5432'
+6. TELEGRAM_CHAT_ID = '<ID чата, куда боту отправлять сообщения>'
+7. TELEGRAM_TOKEN = '<Токен от телеграм бота>'
 ```
 Выполнить миграции:
 ```
@@ -39,7 +41,6 @@ python3 manage.py migrate
 В файле ```orders/table/main_script.py``` в строке 33 указать абсолютный путь до файла с credentials для доступа к google api.
 
 Запустить проект:
-
 ```
 python3 manage.py runserver
 ```
@@ -49,13 +50,3 @@ python3 manage.py runserver
 ***
 ## Телеграм бот:
 Скрипт ```delivery_alert.py``` находится в корневой директори.
-Перед запуском создать файл .env и добавить в него:
-```
-1. DB_NAME = '<название БД>'
-2. POSTGRES_USER = '<логин от БД>'
-3. POSTGRES_PASSWORD = '<пароль от БД>'
-4. DB_HOST = '127.0.0.1'
-5. DB_PORT = '5432'
-6. TELEGRAM_CHAT_ID = '<ID чата, куда боту отправлять сообщения>'
-7. TELEGRAM_TOKEN = '<Токен от телеграм бота>'
-```
