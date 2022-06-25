@@ -23,7 +23,7 @@ python3 -m pip install --upgrade pip
 
 pip install -r requirements.txt
 ```
-В основной папке проекта (где settings.py) создать файл .env и добавить в него:
+В папке ```/orders/orders/``` создать файл .env и добавить в него:
 ```
 1. DB_ENGINE='django.db.backends.postgresql'
 2. DB_NAME = '<название БД>'
@@ -31,9 +31,10 @@ pip install -r requirements.txt
 4. POSTGRES_PASSWORD = '<пароль от БД>'
 5. DB_HOST = '127.0.0.1'
 6. DB_PORT = '5432'
-6. TELEGRAM_CHAT_ID = '<ID чата, куда боту отправлять сообщения>'
-7. TELEGRAM_TOKEN = '<Токен от телеграм бота>'
-8. CREDENTIALS = '<абсолютный путь>' - путь к файлу с credentials для доступа к google api.
+```
+В папке ```/orders/table/``` создать файл .env и добавить в него:
+```
+CREDENTIALS = '<абсолютный путь>' - путь к файлу с credentials для доступа к google api.
 ```
 Выполнить миграции:
 ```
@@ -48,4 +49,8 @@ python3 manage.py runserver
 Файл ```/orders/table/main_script.py``` можно запустить самостоятельно. Он будет отслеживать изменения в google таблице и вносить правки в базу данных.
 ***
 ## Телеграм бот:
-Скрипт ```delivery_alert.py``` находится в корневой директори.
+Скрипт ```delivery_alert.py``` находится в корневой директори. Аналогично, создаем файл .env и добавляем:
+```
+TELEGRAM_CHAT_ID = '<ID чата, куда отправлять сообщения>'
+TELEGRAM_TOKEN = '<токен от телеграм бота>'
+```

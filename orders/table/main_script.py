@@ -1,7 +1,6 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from os import getenv
-import os.path as p
 from random import randint
 from time import sleep
 from urllib.error import HTTPError
@@ -27,9 +26,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-BASEBASE_DIR = p.dirname(p.dirname(__file__))
-dir = f'{BASEBASE_DIR}/orders/.env'
-load_dotenv(dir)
+load_dotenv()
 
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
 CREDENTIALS = getenv('CREDENTIALS')
