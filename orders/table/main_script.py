@@ -132,7 +132,7 @@ def making_changes_to_the_database(add=None, delete=None):
 
 
 def main():
-    creating_table()
+    # creating_table()
     data = get_data()
     making_changes_to_the_database(add=data)
     print('Скрипт запущен')
