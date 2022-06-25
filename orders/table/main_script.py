@@ -32,7 +32,7 @@ dir = f'{BASEBASE_DIR}/orders/.env'
 load_dotenv(dir)
 
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
-CREDENTIALS_FILE = ''  # Абсолютный путь до файла с credentials
+CREDENTIALS = getenv('CREDENTIALS')
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/drive']
 QUOTES = 'http://www.cbr.ru/scripts/XML_daily.asp'
@@ -41,7 +41,7 @@ QUOTES = 'http://www.cbr.ru/scripts/XML_daily.asp'
 def get_credentials():
     """Получаем credentials из файла для service account."""
     creds = service_account.Credentials.from_service_account_file(
-        CREDENTIALS_FILE, scopes=SCOPES)
+        CREDENTIALS, scopes=SCOPES)
     return creds
 
 
