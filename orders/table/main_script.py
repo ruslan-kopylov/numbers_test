@@ -135,6 +135,7 @@ def main():
     creating_table()
     data = get_data()
     making_changes_to_the_database(add=data)
+    print('Скрипт запущен')
     while True:
         sleep(randint(5, 20))
         new_data = get_data()
