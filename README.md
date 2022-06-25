@@ -33,13 +33,12 @@ pip install -r requirements.txt
 6. DB_PORT = '5432'
 6. TELEGRAM_CHAT_ID = '<ID чата, куда боту отправлять сообщения>'
 7. TELEGRAM_TOKEN = '<Токен от телеграм бота>'
+8. CREDENTIALS = '<абсолютный путь>' - путь к файлу с credentials для доступа к google api.
 ```
 Выполнить миграции:
 ```
 python3 manage.py migrate
 ```
-В файле ```orders/table/main_script.py``` в строке 33 указать абсолютный путь до файла с credentials для доступа к google api.
-
 Запустить проект:
 ```
 python3 manage.py runserver
