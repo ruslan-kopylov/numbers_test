@@ -31,8 +31,10 @@ BASEBASE_DIR = p.dirname(p.dirname(__file__))
 dir = f'{BASEBASE_DIR}/orders/.env'
 load_dotenv(dir)
 
+
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
 CREDENTIALS = getenv('CREDENTIALS')
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/drive']
 QUOTES = 'http://www.cbr.ru/scripts/XML_daily.asp'
