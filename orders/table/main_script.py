@@ -28,8 +28,10 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
+
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
 CREDENTIALS = getenv('CREDENTIALS')
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/drive']
 QUOTES = 'http://www.cbr.ru/scripts/XML_daily.asp'
