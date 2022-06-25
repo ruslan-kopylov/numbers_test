@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3">Информация о заказах</div>
+          <form action="{% url 'table:index' %}">
+            <button>Обновить</button>
+          </form>
+        <div class="col-3"></div>
+        </div>
+    </header>
+    <div class="main">
+      <div class="container">
+        <table class="table">
+      	  <thead>
+      		  <tr>
+      		    <th>№</th>
+      			<th>Номер заказа</th>
+      			<th>Стоимость,$</th>
+      			<th>Стоимость,₽</th>
+      			<th>Срок поставки</th>
+      		  </tr>
+      	  </thead>
+      	  <tbody>
+            {% for order in orders %}
+      		  <tr>
+      		    <td>{{ order.number }}</td>
+      		    <td>{{ order.order_num }}</td>
+      		    <td>{{ order.price_usd }}</td>
+      		    <td>{{ order.price_rub }}</td>
+      		    <td>{{ order.delivery }}</td>
+      		  </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+<style type="text/css">
+.col-3 {
+  height: 100px;
+  width: 33.333%; 
+  text-align: center;
+  display: table-cell;
+  padding-top: 20px;
+}
+.row {
+    display: table;
+    width: 100%;
+}
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.table {
+	width: 100%;
+	border: none;
+	margin-bottom: 20px;
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	background: #d8d8d8;
+	font-size: 14px;
+}
+.table thead tr th:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.table thead tr th:last-child {
+	border-radius: 0 8px 8px 0;
+}
+.table tbody td {
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	font-size: 14px;
+	vertical-align: top;
+}
+.table tbody tr:nth-child(even){
+	background: #f3f3f3;
+}
+.table tbody tr td:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.table tbody tr td:last-child {
+	border-radius: 0 8px 8px 0;
+}
+</style>
