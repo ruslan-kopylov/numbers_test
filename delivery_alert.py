@@ -2,6 +2,7 @@ import datetime as dt
 import logging
 from logging.handlers import RotatingFileHandler
 from os import getenv
+import os.path as p
 import time
 
 from dotenv import load_dotenv
@@ -21,7 +22,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv()
+BASEBASE_DIR = p.dirname(__file__)
+dir = f'{BASEBASE_DIR}/orders/orders/.env'
+load_dotenv(dir)
+
 TELEGRAM_TOKEN = getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = getenv('TELEGRAM_CHAT_ID')
 RETRY_TIME = 60 * 60 * 12
