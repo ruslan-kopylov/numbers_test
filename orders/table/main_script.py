@@ -69,7 +69,7 @@ def creating_table():
                                       database=getenv('DB_NAME')
                                       )
         cursor = connection.cursor()
-        cursor.execute('''CREATE TABLE TABLE_ORDERS
+        cursor.execute('''CREATE TABLE ORDERS
             (NUMBER INT,
             ORDER_NUM INT PRIMARY KEY,
             PRICE_USD INT,
@@ -95,7 +95,8 @@ def exchange_rate():
     return rate
 
 
-def making_changes_to_the_database(add=None, delete=None):
+def making_changes_to_the_database(
+        add=None, delete=None, table_name='table_orders'):
     """Вношу изменения в БД."""
     try:
         connection = psycopg2.connect(user=getenv('POSTGRES_USER'),
@@ -106,14 +107,20 @@ def making_changes_to_the_database(add=None, delete=None):
                                       )
         cursor = connection.cursor()
         if delete:
-            query = "DELETE FROM table_orders WHERE order_num = %s"
+            if table_name == 'table_orders':
+                query = "DELETE FROM table_orders WHERE order_num = %s"
+            else:
+                query = "DELETE FROM orders WHERE order_num = %s"
             for record in delete:
                 cursor.execute(query, (record[1],))
         if add:
             rate = exchange_rate()
-            query = '''INSERT INTO table_orders (number, order_num,
-                price_usd, price_rub, delivery)
-                VALUES (%s,%s,%s,%s,%s)'''
+            if table_name == 'table_orders':
+                query = '''INSERT INTO table_orders (number, order_num, price_usd,
+                price_rub, delivery) VALUES (%s,%s,%s,%s,%s)'''
+            else:
+                query = '''INSERT INTO orders (number, order_num, price_usd,
+                price_rub, delivery) VALUES (%s,%s,%s,%s,%s)'''
             for order in add:
                 price_rub = f'{(int(order[2]) * rate):.2f}'
                 order = (
@@ -131,9 +138,9 @@ def making_changes_to_the_database(add=None, delete=None):
 
 
 def main():
-    # creating_table()
+    creating_table()
     data = get_data()
-    making_changes_to_the_database(add=data)
+    making_changes_to_the_database(add=data, table_name='orders')
     print('Скрипт запущен')
     while True:
         sleep(randint(5, 20))
@@ -141,7 +148,8 @@ def main():
         if data != new_data:
             deleting = (d for d in data if d not in new_data)
             adding = (a for a in new_data if a not in data)
-            making_changes_to_the_database(adding, deleting)
+            making_changes_to_the_database(
+                adding, deleting, table_name='orders')
             print('В базу данных внесены изменения')
         data = new_data
 
