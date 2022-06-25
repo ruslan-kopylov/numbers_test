@@ -89,7 +89,6 @@ def exchange_rate():
         rate = float(".".join(rate))
     except HTTPError as err:
         logger.exception(err)
-        return 60
     return rate
 
 
@@ -139,6 +138,7 @@ def main():
             deleting = (d for d in data if d not in new_data)
             adding = (a for a in new_data if a not in data)
             making_changes_to_the_database(adding, deleting)
+            print('В базу данных внесены изменения')
         data = new_data
 
 
