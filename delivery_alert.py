@@ -3,10 +3,11 @@ import logging
 from logging.handlers import RotatingFileHandler
 from os import getenv
 import time
+from typing import List, Tuple
 
 from dotenv import load_dotenv
 import psycopg2
-import telegram
+from telegram import Bot, TelegramError
 
 
 logging.basicConfig(
@@ -28,15 +29,15 @@ TELEGRAM_CHAT_ID = getenv('TELEGRAM_CHAT_ID')
 RETRY_TIME = 60 * 60 * 12
 
 
-def send_message(bot, message):
+def send_message(bot: Bot, message: str) -> None:
     """Функция для отправки сообщения ботом."""
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
-    except telegram.TelegramError:
+    except TelegramError:
         logger.exception('Cбой при отправке сообщения')
 
 
-def dates_checker():
+def dates_checker() -> Tuple[List[str], List[str]]:
     """Функция для проверки дат."""
     connection = psycopg2.connect(
         user=getenv('POSTGRES_USER'),
@@ -61,7 +62,7 @@ def dates_checker():
 
 def main():
     """Основная логика работы бота."""
-    bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    bot = Bot(token=TELEGRAM_TOKEN)
     while True:
         try:
             today, alerts = dates_checker()
