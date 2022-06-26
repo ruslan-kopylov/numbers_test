@@ -7,3 +7,6 @@ class Orders(models.Model):
     price_usd = models.IntegerField()
     price_rub = models.FloatField()
     delivery = models.CharField(max_length=200)
+
+    class Meta:
+        ordering = ['number']
