@@ -26,7 +26,7 @@ def index(request):
         deleting = [d for d in data if (
             d[1] not in keys and d not in new_data)]
         adding = [a for a in new_data if (
-            a[1] not in keys and a not in data)]    
+            a[1] not in keys and a not in data)]
         main_script.making_changes_to_the_database(adding, deleting, updating)
     orders = Orders.objects.all()
     return render(request, 'index.html', {'orders': orders})

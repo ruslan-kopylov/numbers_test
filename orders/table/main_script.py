@@ -3,7 +3,7 @@ from logging.handlers import RotatingFileHandler
 from os import getenv
 from random import randint
 from time import sleep
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Optional
 from urllib.error import HTTPError
 import xml.etree.ElementTree as ET
 
@@ -76,7 +76,6 @@ def creating_table() -> None:
             '''
         cursor.execute(query)
         if ('orders',) not in cursor.fetchall():
-            print('ALLO')
             cursor.execute('''CREATE TABLE ORDERS
                 (NUMBER INT,
                 ORDER_NUM INT PRIMARY KEY,
@@ -151,8 +150,8 @@ def making_changes_to_the_database(
 def find_updated_rows(
         data: List[List[str]],
         new_data: List[List[str]]
-        ) -> Union[Dict[str, List[str]], None]:
-    updating = {}
+        ) -> Union[Dict[str, Dict[str, str]], dict]:
+    updating: dict = {}
     columns = {
         0: 'number',
         1: 'order_num',
