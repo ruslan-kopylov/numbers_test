@@ -29,7 +29,7 @@ docker-compose up -d
 ```
 Для доступа к консоли ввести:
 ```
-docker exec -it orders-web-1 /bin/bash
+docker exec -it orders /bin/bash
 ```
 ***
 ## Бесконечный скрипт.
