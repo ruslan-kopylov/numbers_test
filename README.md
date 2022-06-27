@@ -23,7 +23,7 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 ```
 В папке ```/numbers_test/orders/table/```  разместить файл "credentials.json" с данными от google api.
 
-Запустить docker-compose:
+Запустить docker-compose из директории ```/numbers_test/orders/```:
 ```
 docker-compose up -d
 ```
