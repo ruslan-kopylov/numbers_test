@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
-RETRY_TIME = 60 * 60 * 12
+RETRY_TIME = 60 * 10
 
 
 def send_message(bot: Bot, message: str) -> None:
@@ -36,25 +36,28 @@ def send_message(bot: Bot, message: str) -> None:
 
 def dates_checker() -> Tuple[List[str], List[str]]:
     """Функция для проверки дат."""
-    connection = psycopg2.connect(
-        user=os.environ.get('POSTGRES_USER'),
-        password=os.environ.get('POSTGRES_PASSWORD'),
-        host=os.environ.get('DB_HOST'),
-        port=os.environ.get('DB_PORT'),
-        database=os.environ.get('DB_NAME')
-    )
-    cursor = connection.cursor()
-    query = 'SELECT * FROM table_orders'
-    cursor.execute(query)
-    alerts, today = [], []
-    for row in cursor.fetchall():
-        date = row[-1].split('.')
-        date = dt.date(int(date[2]), int(date[1]), int(date[0]))
-        if date == dt.date.today():
-            today.append(row)
-        if date < dt.date.today():
-            alerts.append(row)
-    return today, alerts
+    try:
+        connection = psycopg2.connect(
+            user=os.environ.get('POSTGRES_USER'),
+            password=os.environ.get('POSTGRES_PASSWORD'),
+            host=os.environ.get('DB_HOST'),
+            port=os.environ.get('DB_PORT'),
+            database=os.environ.get('DB_NAME')
+        )
+        cursor = connection.cursor()
+        query = 'SELECT * FROM table_orders'
+        cursor.execute(query)
+        alerts, today = [], []
+        for row in cursor.fetchall():
+            date = row[-1].split('.')
+            date = dt.date(int(date[2]), int(date[1]), int(date[0]))
+            if date == dt.date.today():
+                today.append(row)
+            if date < dt.date.today():
+                alerts.append(row)
+        return today, alerts
+    except Exception as err:
+        print(err)
 
 
 def main():
@@ -78,7 +81,7 @@ def main():
         except Exception as error:
             message = f'Сбой в работе программы: {error}'
             send_message(bot, message)
-
+            time.sleep(60)
 
 if __name__ == '__main__':
     main()
