@@ -7,8 +7,6 @@ from .models import Orders
 from . import main_script
 
 
-
-
 def index(request):
     check_table()
     new_data = main_script.get_data()

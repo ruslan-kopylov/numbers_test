@@ -1,6 +1,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+from pathlib import Path
 from random import randint
 from time import sleep
 from typing import List, Dict, Union
@@ -25,9 +26,9 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
-
+BASE_DIR = Path(__file__).parent
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
-CREDENTIALS = os.environ.get('CREDENTIALS')
+CREDENTIALS = f'{BASE_DIR}/credentials.json'
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/drive']
