@@ -1,6 +1,6 @@
 # Тестовое задание на позицию python разработчика в компанию Numbers
 ***
-Проект получает данные из Google таблицы. Модифицирует их, хранит в БД и выводит на веб-страницу.
+Проект получает данные из [Google таблицы]. Модифицирует их, хранит в БД и выводит на веб-страницу.
 Отдельный скрипт отправляет оповещения в телеграм.
 ***
 ## Установка
@@ -21,9 +21,9 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 7. TELEGRAM_CHAT_ID = '<чат ID куда бот будет отправлять оповещения>'
 8. TELEGRAM_TOKEN = '<токен от бота>'
 ```
-В папке ```/orders/table/```  разместить файл "credentials.json" с данными от google api.
+В папке ```/numbers_test/orders/table/```  разместить файл "credentials.json" с данными от google api.
 
-Запустить docker-compose:
+Запустить docker-compose из директории ```/numbers_test/orders/``` - страница будет доступна по адресу http://0.0.0.0:8000/:
 ```
 docker-compose up -d
 ```
@@ -37,3 +37,5 @@ docker exec -it orders /bin/bash
 ***
 ## Телеграм бот:
 Скрипт ```delivery_alert.py``` находится в корневой директори.
+
+[Google таблицы]:https://docs.google.com/spreadsheets/d/18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI/edit#gid=0
