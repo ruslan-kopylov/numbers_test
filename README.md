@@ -35,5 +35,6 @@ sudo docker-compose up -d
 ## Телеграм бот:
 Еще в одном контейнере запустится телеграм бот, который присылает сообщения о наступивших и прошедших датах поставки.
 Код бота ```numbers_test/alert/alert.py```
+Бот стартует через 10 секунд после запуска всех контейнеров.
 
 [Google таблицы]:https://docs.google.com/spreadsheets/d/18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI/edit#gid=0
