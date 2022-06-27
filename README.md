@@ -21,7 +21,7 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 7. TELEGRAM_CHAT_ID = '<чат ID куда бот будет отправлять оповещения>'
 8. TELEGRAM_TOKEN = '<токен от бота>'
 ```
-В папке ```/orders/table/```  разместить файл "credentials.json" с данными от google api.
+В папке ```/numbers_test/orders/table/```  разместить файл "credentials.json" с данными от google api.
 
 Запустить docker-compose:
 ```
