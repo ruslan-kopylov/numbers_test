@@ -27,7 +27,7 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 ```
 docker-compose up -d
 ```
-Для доступа к консоли и скриптам ввести:
+Для доступа к консоли ввести:
 ```
 docker exec -it orders-web-1 /bin/bash
 ```
