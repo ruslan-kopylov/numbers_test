@@ -27,6 +27,10 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 ```
 docker-compose up -d
 ```
+Для доступа к консоли и скриптам ввести:
+```
+docker exec -it orders-web-1 /bin/bash
+```
 ***
 ## Бесконечный скрипт.
 Файл ```/orders/table/main_script.py``` можно запустить самостоятельно. Он будет отслеживать изменения в google таблице и вносить правки в базу данных.
