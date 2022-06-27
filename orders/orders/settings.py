@@ -1,9 +1,5 @@
-from os import getenv
+import os
 from pathlib import Path
-
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,6 +9,7 @@ SECRET_KEY = 'django-insecure-%)z7v&)u1a7w2fam6ls)vj!q75cfhas$30u1%stwes4@_#e^3p
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    '0.0.0.0',
     'localhost',
     '127.0.0.1',
     '[::1]',
@@ -63,12 +60,12 @@ WSGI_APPLICATION = 'orders.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': getenv('DB_ENGINE'),
-        'NAME': getenv('DB_NAME'),
-        'USER': getenv('POSTGRES_USER'),
-        'PASSWORD': getenv('POSTGRES_PASSWORD'),
-        'HOST': getenv('DB_HOST'),
-        'PORT': getenv('DB_PORT'),
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 

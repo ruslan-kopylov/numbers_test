@@ -1,13 +1,12 @@
 import logging
 from logging.handlers import RotatingFileHandler
-from os import getenv
+import os
 from random import randint
 from time import sleep
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union
 from urllib.error import HTTPError
 import xml.etree.ElementTree as ET
 
-from dotenv import load_dotenv
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 import psycopg2
@@ -27,11 +26,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv()
-
-
 SHEET_ID = '18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI'
-CREDENTIALS = getenv('CREDENTIALS')
+CREDENTIALS = os.environ.get('CREDENTIALS')
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets',
           'https://www.googleapis.com/auth/drive']
@@ -63,11 +59,11 @@ def get_data() -> List[List[str]]:
 def creating_table() -> None:
     """В заранее подготовленной базе данных создаю таблицу."""
     try:
-        connection = psycopg2.connect(user=getenv('POSTGRES_USER'),
-                                      password=getenv('POSTGRES_PASSWORD'),
-                                      host=getenv('DB_HOST'),
-                                      port=getenv('DB_PORT'),
-                                      database=getenv('DB_NAME')
+        connection = psycopg2.connect(user=os.environ.get('POSTGRES_USER'),
+                                      password=os.environ.get('POSTGRES_PASSWORD'),
+                                      host=os.environ.get('DB_HOST'),
+                                      port=os.environ.get('DB_PORT'),
+                                      database=os.environ.get('DB_NAME')
                                       )
         cursor = connection.cursor()
         query = '''SELECT table_name
@@ -109,11 +105,11 @@ def making_changes_to_the_database(
         table_name: str = 'table_orders') -> None:
     """Вношу изменения в БД."""
     try:
-        connection = psycopg2.connect(user=getenv('POSTGRES_USER'),
-                                      password=getenv('POSTGRES_PASSWORD'),
-                                      host=getenv('DB_HOST'),
-                                      port=getenv('DB_PORT'),
-                                      database=getenv('DB_NAME')
+        connection = psycopg2.connect(user=os.environ.get('POSTGRES_USER'),
+                                      password=os.environ.get('POSTGRES_PASSWORD'),
+                                      host=os.environ.get('DB_HOST'),
+                                      port=os.environ.get('DB_PORT'),
+                                      database=os.environ.get('DB_NAME')
                                       )
         cursor = connection.cursor()
         if update:

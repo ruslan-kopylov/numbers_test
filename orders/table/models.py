@@ -10,10 +10,3 @@ class Orders(models.Model):
 
     class Meta:
         ordering = ['number']
-
-
-class OldOrders(models.Model):
-    number = models.IntegerField()
-    order_num = models.IntegerField(primary_key=True)
-    price_usd = models.IntegerField()
-    delivery = models.CharField(max_length=200)

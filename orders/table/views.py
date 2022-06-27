@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from os import getenv
+import os
 
-from dotenv import load_dotenv
-from .models import Orders
-from . import main_script
 import psycopg2
 
-load_dotenv()
+from .models import Orders
+from . import main_script
+
+
 
 
 def index(request):
@@ -33,11 +33,11 @@ def index(request):
 
 
 def check_table() -> None:
-    connection = psycopg2.connect(user=getenv('POSTGRES_USER'),
-                                  password=getenv('POSTGRES_PASSWORD'),
-                                  host=getenv('DB_HOST'),
-                                  port=getenv('DB_PORT'),
-                                  database=getenv('DB_NAME')
+    connection = psycopg2.connect(user=os.environ.get('POSTGRES_USER'),
+                                  password=os.environ.get('POSTGRES_PASSWORD'),
+                                  host=os.environ.get('DB_HOST'),
+                                  port=os.environ.get('DB_PORT'),
+                                  database=os.environ.get('DB_NAME')
                                   )
     cursor = connection.cursor()
     query = '''SELECT table_name

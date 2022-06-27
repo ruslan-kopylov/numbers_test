@@ -1,11 +1,10 @@
 import datetime as dt
 import logging
 from logging.handlers import RotatingFileHandler
-from os import getenv
+import os
 import time
 from typing import List, Tuple
 
-from dotenv import load_dotenv
 import psycopg2
 from telegram import Bot, TelegramError
 
@@ -22,10 +21,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv()
-
-TELEGRAM_TOKEN = getenv('TELEGRAM_TOKEN')
-TELEGRAM_CHAT_ID = getenv('TELEGRAM_CHAT_ID')
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 RETRY_TIME = 60 * 60 * 12
 
 
@@ -40,11 +37,11 @@ def send_message(bot: Bot, message: str) -> None:
 def dates_checker() -> Tuple[List[str], List[str]]:
     """Функция для проверки дат."""
     connection = psycopg2.connect(
-        user=getenv('POSTGRES_USER'),
-        password=getenv('POSTGRES_PASSWORD'),
-        host=getenv('DB_HOST'),
-        port=getenv('DB_PORT'),
-        database=getenv('DB_NAME')
+        user=os.environ.get('POSTGRES_USER'),
+        password=os.environ.get('POSTGRES_PASSWORD'),
+        host=os.environ.get('DB_HOST'),
+        port=os.environ.get('DB_PORT'),
+        database=os.environ.get('DB_NAME')
     )
     cursor = connection.cursor()
     query = 'SELECT * FROM table_orders'
