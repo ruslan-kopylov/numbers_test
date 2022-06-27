@@ -25,7 +25,7 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 
 Запустить docker-compose из директории ```/numbers_test/``` - страница будет доступна по адресу http://0.0.0.0:8000/:
 ```
-docker-compose up -d
+sudo docker-compose up -d
 ```
 ***
 ## Бесконечный скрипт.
