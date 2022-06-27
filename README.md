@@ -10,7 +10,7 @@
 git clone git@github.com:ruslan-kopylov/numbers_test.git
 ```
 
-В папке ```/numbers_test/orders/``` создать файл .env.dev и добавить в него:
+В папке ```/numbers_test/``` создать файл .env.dev и добавить в него:
 ```
 1. DB_ENGINE='django.db.backends.postgresql'
 2. DB_NAME = 'postgres''
@@ -21,21 +21,19 @@ git clone git@github.com:ruslan-kopylov/numbers_test.git
 7. TELEGRAM_CHAT_ID = '<чат ID куда бот будет отправлять оповещения>'
 8. TELEGRAM_TOKEN = '<токен от бота>'
 ```
-В папке ```/numbers_test/orders/table/```  разместить файл "credentials.json" с данными от google api.
+В папке ```/numbers_test/main_script/```  разместить файл "credentials.json" с данными от google api.
 
-Запустить docker-compose из директории ```/numbers_test/orders/``` - страница будет доступна по адресу http://0.0.0.0:8000/:
+Запустить docker-compose из директории ```/numbers_test/``` - страница будет доступна по адресу http://0.0.0.0:8000/:
 ```
 docker-compose up -d
 ```
-Для доступа к консоли ввести:
-```
-docker exec -it orders /bin/bash
-```
 ***
 ## Бесконечный скрипт.
-Файл ```/orders/table/main_script.py``` можно запустить самостоятельно. Он будет отслеживать изменения в google таблице и вносить правки в базу данных.
+В отдельном контейнере запускается скрипт, который будет отслеживать изменения в google таблице и вносить правки в базу данных.
+Код скрипта находится в ```numbers_test/main_scroipt/script.py```
 ***
 ## Телеграм бот:
-Скрипт ```delivery_alert.py``` находится в корневой директори.
+Еще в одном контейнере запустится телеграм бот, который присылает сообщения о наступивших и прошедших датах поставки.
+Код бота ```numbers_test/alert/alert.py```
 
 [Google таблицы]:https://docs.google.com/spreadsheets/d/18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI/edit#gid=0
