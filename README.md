@@ -10,7 +10,7 @@
 git clone git@github.com:ruslan-kopylov/numbers_test.git
 ```
 
-В папке ```/numbers_test/``` создать файл .env.dev и добавить в него:
+В папке ```/numbers_test/``` создать файл .env и добавить в него:
 ```
 1. DB_ENGINE='django.db.backends.postgresql'
 2. DB_NAME = 'postgres''
