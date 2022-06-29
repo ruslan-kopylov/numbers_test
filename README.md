@@ -1,4 +1,4 @@
-# Тестовое задание на позицию python разработчика в компанию Numbers
+# [Тестовое] задание на позицию python разработчика в компанию Numbers
 ***
 Проект получает данные из [Google таблицы]. Добавляет к ним стоимость в рублях по курсу ЦБ, хранит в БД и выводит на веб-страницу.
 Отдельный скрипт отправляет оповещения в телеграм.
@@ -38,3 +38,5 @@ sudo docker-compose up -d
 Бот стартует через 10 секунд после запуска всех контейнеров.
 
 [Google таблицы]:https://docs.google.com/spreadsheets/d/18t77XoaDLCmCUPfNm1TD3itBy1hFvcc0S3JG7wlJYvI/edit#gid=0
+
+[Тестовое]:https://soldigital.notion.site/soldigital/developer-5b79683045a64129a2625a19bfb0c944
