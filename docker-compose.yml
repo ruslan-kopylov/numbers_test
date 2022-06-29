@@ -18,18 +18,18 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env.dev
+      - .env
     depends_on:
       - db
   script:
     build: ./main_script/
     env_file:
-      - .env.dev
+      - .env
     depends_on:
       - web
   alert:
     build: ./alert/
     env_file:
-      - .env.dev
+      - .env
     depends_on:
       - script
